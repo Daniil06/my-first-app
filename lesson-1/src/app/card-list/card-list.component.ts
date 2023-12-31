@@ -1,4 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ITodo} from "../core/models/ITodo.model";
 
 @Component({
   selector: 'app-card-list',
@@ -6,5 +7,16 @@ import {Component, Input} from '@angular/core';
   styleUrl: './card-list.component.css'
 })
 export class CardListComponent {
-@Input() todoList: any;
+  @Input() todoList: ITodo[] | undefined;
+  @Output() deleteCard: EventEmitter<ITodo> = new EventEmitter<ITodo>()
+  @Output() editCard: EventEmitter<ITodo> = new EventEmitter<ITodo>()
+
+onDelete(todo: ITodo) {
+  this.deleteCard.emit(todo)
+  console.log('todo in todoListComponent', todo)
+  }
+
+  onEdit(todo: ITodo) {
+    this.editCard.emit(todo)
+  }
 }

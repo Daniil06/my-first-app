@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ITodo } from "./core/models/ITodo.model";
 
 @Component({
   selector: 'app-root',
@@ -8,17 +9,18 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'lesson-1';
   name!: string;
+  cardToEdit: ITodo | undefined;
 
-  todoListMain = [
+  todoListMain: ITodo[] = [
     {
       name: "Задача 1",
       date: "2023-12-01",
-      type: "new"
+      type: "done"
     },
     {
       name: "Задача 2",
       date: "2023-12-02",
-      type: "inProgress"
+      type: "new"
     },
     {
       name: "Задача 3",
@@ -33,7 +35,7 @@ export class AppComponent {
     {
       name: "Задача 5",
       date: "2023-12-05",
-      type: "inProgress"
+      type: "new"
     },
     {
       name: "Задача 6",
@@ -41,4 +43,12 @@ export class AppComponent {
       type: "done"
     }
   ];
+
+  onDeleteCard(todo: ITodo) {
+    this.todoListMain = this.todoListMain.filter(item => item.name !== todo.name )
+  }
+
+  onEditCard(todo: ITodo) {
+    this.cardToEdit = todo;
+  }
 }

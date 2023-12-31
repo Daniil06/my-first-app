@@ -1,4 +1,11 @@
-<span>Я новый компонент {{ name }}</span>
-<br>
-<input type="text" [(ngModel)]="name">
-<app-card-list [todoList]="todoListMain"></app-card-list>
+<div class="content">
+  <app-card-list
+    [todoList]="todoListMain"
+    (deleteCard)="onDeleteCard($event)"
+    (editCard)="onEditCard($event)"
+  ></app-card-list>
+  <app-card-edit
+    [todoToEdit]="cardToEdit"
+  ></app-card-edit>
+</div>
+
